@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Facebook from "../../../Assets/Icons/fb.png";
 import Google from "../../../Assets/Icons/google.png";
@@ -18,25 +18,17 @@ const SignUp = () => {
 
   let spinner;
 
-  // Function: Submit Form
-  const onSubmitForm = async (e) => {
-    e.preventDefault();
-    if (loading) {
-      spinner = (
-        <div class="loaderRectangle">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      );
-      await createUserWithEmailAndPassword(email, password);
-    }
+  useEffect(() => {
     if (user) {
       toast.success("Account Created", { id: "test" });
       navigate("/");
     }
+  }, [user, navigate]);
+
+  // Function: Submit Form
+  const onSubmitForm = async (e) => {
+    e.preventDefault();
+    await createUserWithEmailAndPassword(email, password);
   };
   return (
     <div>
