@@ -1,4 +1,5 @@
 
+import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import LogIn from './Components/Authentication/LogIn/LogIn';
@@ -11,6 +12,7 @@ function App() {
   return (
     <div className='main-container'>
       <Navbar />
+      <Toaster/>
       <Routes>
         <Route path='/' element={ <Home/>}></Route>
         <Route path='/login' element={<LogIn/>}></Route>
