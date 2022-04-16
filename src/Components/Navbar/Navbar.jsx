@@ -15,7 +15,7 @@ const Navbar = () => {
                 <NavLink className={({ isActive }) => isActive ? 'active-link' : 'link'} to='/destination'>Destination</NavLink>
                 <NavLink className={({ isActive }) => isActive ? 'active-link' : 'link'} to='/blog'>Blog</NavLink>
                 <NavLink className={({ isActive }) => isActive ? 'active-link' : 'link'} to='/contact'>Contact</NavLink>
-                <NavLink className={({ isActive }) => isActive ? 'active-link' : 'link'} to='/login'>Login</NavLink>
+                <NavLink className=' button' to='/login'>Login</NavLink>
             </nav>
         </div>
     );
