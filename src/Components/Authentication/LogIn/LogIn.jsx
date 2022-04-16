@@ -13,18 +13,18 @@ const LogIn = () => {
           <input className="block outline-none w-full bg-transparent border-b mb-4 py-3 pl-4 text-lg" type="password" name="password" placeholder="Password" />
                   <input type="checkbox" className="mt-3" id="scales"/>
                   <label for="scales" className="text-white ml-2 ">Remember Me</label>
-          <input type="submit" value="Login"  className="block bg-yellow-500 w-full py-4 text-xl mt-16"/>
+          <input type="submit" value="Login"  className="block bg-yellow-500 w-full py-3 rounded text-xl mt-16"/>
           <p className="text-white text-center mt-5 text-lg ">
-            Don't have an account? <Link className="text-yellow-500" to={"signup"}>Create an account</Link>
+            Don't have an account? <Link className="text-yellow-500" to={"/signup"}>Create an account</Link>
           </p>
         </form>
       </div>
       <div className="flex items-center justify-center my-5">
-        <div className="h-[2px] bg-slate-400 w-44"></div>
+        <div className="h-[2px] bg-slate-400 w-52"></div>
         <div>
-          <span className="mx-2 text-white">or</span>
+          <span className="mx-3 text-white">Or</span>
         </div>
-        <div className="h-[2px] bg-slate-400 w-44"></div>
+        <div className="h-[2px] bg-slate-400 w-52"></div>
       </div>
       <div className=" w-full">
         <button className="flex items-center border w-1/3 px-[6px] mb-3 py-1 rounded-full mx-auto">
