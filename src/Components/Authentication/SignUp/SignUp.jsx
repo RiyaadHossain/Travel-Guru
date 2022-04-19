@@ -9,6 +9,7 @@ import {
 } from "react-firebase-hooks/auth";
 import "./SignUp.css";
 import toast from "react-hot-toast";
+import HelmetTitle from "../../HelmetTitle/HelmetTitle";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -38,6 +39,7 @@ const SignUp = () => {
   };
   return (
     <div>
+      <HelmetTitle title="Sign Up - Travel Guru"/>
       {spinner ? (
         spinner
       ) : (

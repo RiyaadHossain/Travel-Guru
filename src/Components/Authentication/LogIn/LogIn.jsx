@@ -6,12 +6,13 @@ import { Link, useNavigate } from "react-router-dom";
 import Facebook from "../../../Assets/Icons/fb.png";
 import Google from "../../../Assets/Icons/google.png";
 import auth from "../../../Firebase/Firebase.init";
+import HelmetTitle from "../../HelmetTitle/HelmetTitle";
 
 const LogIn = () => {
   const navigate = useNavigate()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [signInWithEmailAndPassword, user, loading, error] =
+  const [signInWithEmailAndPassword, user] =
     useSignInWithEmailAndPassword(auth);
   
     useEffect(() => {
@@ -34,6 +35,7 @@ const LogIn = () => {
   }
   return (
     <div>
+      <HelmetTitle title="Log In - Travel Guru"/>
       <div className="border rounded p-6 form-container">
         <h3 className="text-3xl font-semibold mt-3 mb-5 text-white">Login</h3>
         <form onSubmit={onFormSubmit}>
