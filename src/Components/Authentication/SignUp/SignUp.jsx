@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Facebook from "../../../Assets/Icons/fb.png";
 import Google from "../../../Assets/Icons/google.png";
 import auth from "../../../Firebase/Firebase.init";
@@ -12,34 +12,44 @@ import toast from "react-hot-toast";
 import HelmetTitle from "../../HelmetTitle/HelmetTitle";
 
 const SignUp = () => {
+  const location = useLocation()
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
+  const [createUserWithEmailAndPassword, user] =
+    useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
 
-  const [updateProfile, updating] = useUpdateProfile(auth);
+  const [updateProfile] = useUpdateProfile(auth);
   let spinner;
+
+  let from = location.state?.from?.pathname || "/";
+
 
   useEffect(() => {
     if (user) {
-      toast.success("Account Created", { id: "test" });
-      navigate("/");
+      toast.success("Verification Mail Sent", { id: "test" });
+      navigate(from);
     }
-  }, [user, navigate]);
+  }, [user, navigate, from]);
 
   // Function: Submit Form
   const onSubmitForm = async (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(email, password);
-    await updateProfile({ name });
+    if (password !== confirmPassword) {
+      alert("Password didn't match")
+      return
+    }
+    if (password === confirmPassword) {
+      await createUserWithEmailAndPassword(email, password);
+      await updateProfile({ name });
+    }
     console.log(user);
   };
   return (
     <div>
-      <HelmetTitle title="Sign Up - Travel Guru"/>
+      <HelmetTitle title="Sign Up - Travel Guru" />
       {spinner ? (
         spinner
       ) : (
@@ -51,28 +61,28 @@ const SignUp = () => {
             <form onSubmit={onSubmitForm}>
               <input
                 onChange={(e) => setName(e.target.value)}
-                className="block outline-none w-full bg-transparent border-b mb-4 py-3 pl-4 text-lg"
+                className="block outline-none w-full bg-transparent border-b mb-4 py-3 pl-4 text-lg text-white"
                 type="text"
                 name="name"
                 placeholder="Name"
               />
               <input
                 onBlur={(e) => setEmail(e.target.value)}
-                className="block outline-none w-full bg-transparent border-b mb-4 py-3 pl-4 text-lg"
+                className="block outline-none w-full bg-transparent border-b mb-4 py-3 pl-4 text-lg text-white"
                 type="email"
                 name="email"
                 placeholder="Email"
               />
               <input
                 onBlur={(e) => setPassword(e.target.value)}
-                className="block outline-none w-full bg-transparent border-b mb-4 py-3 pl-4 text-lg"
+                className="block outline-none w-full bg-transparent border-b mb-4 py-3 pl-4 text-lg text-white"
                 type="password"
                 name="password"
                 placeholder="Password"
               />
               <input
                 onBlur={(e) => setConfirmPassword(e.target.value)}
-                className="block outline-none w-full bg-transparent border-b mb-4 py-3 pl-4 text-lg"
+                className="block outline-none w-full bg-transparent border-b mb-4 py-3 pl-4 text-lg text-white"
                 type="password"
                 name="confirmPassword"
                 placeholder="Confirm Password"

@@ -4,8 +4,10 @@ import CoxsBazar from '../../Assets/Images/Rectangle 1.png'
 import SecondOne from '../../Assets/Images/Sreemongol.png'
 import ThirdOne from '../../Assets/Images/Sajek.png'
 import { Helmet } from "react-helmet-async";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate()
   return (
     <div className="flex container mx-auto items-center gap-5 mt-16">
       <Helmet>
@@ -18,7 +20,7 @@ const Home = () => {
           for its very long, sandy beachfront, stretching from Sea Beach in the
           north to Kolatoli Beach in the south.
         </p>
-        <button className="flex items-center mt-7 bg-yellow-600 text-black py-2 px-5 rounded text-lg font-bold">
+        <button onClick={() => navigate('/booking')} className="flex items-center mt-7 bg-yellow-600 text-black py-2 px-5 rounded text-lg font-bold">
           <span>Booking</span>{" "}
           <BsArrowRight className="ml-2 mt-1 text-2xl font-extrabold" />
         </button>
