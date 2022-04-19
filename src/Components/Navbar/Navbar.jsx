@@ -17,6 +17,7 @@ const Navbar = () => {
             toast.error('An Error Occurred')
           });
     }
+    console.log(user);
     return (
         <div className='flex h-20 items-center justify-between container mx-auto'>
             <div>
@@ -28,7 +29,7 @@ const Navbar = () => {
                 <NavLink className={({ isActive }) => isActive ? 'active-link' : 'link'} to='/blog'>Blog</NavLink>
                 <NavLink className={({ isActive }) => isActive ? 'active-link' : 'link'} to='/contact'>Contact</NavLink>
                 {
-                    user ? <button onClick={logOut} className='button'>Log Out</button> : <NavLink className=' button' to='/login'>Login</NavLink>
+                    user ? (<button onClick={logOut} className='button'>{ user.name}Log Out</button> ) : <NavLink className=' button' to='/login'>Login</NavLink>
                 }
             </nav>
         </div>

@@ -3,10 +3,14 @@ import { BsArrowRight } from "react-icons/bs";
 import CoxsBazar from '../../Assets/Images/Rectangle 1.png'
 import SecondOne from '../../Assets/Images/Sreemongol.png'
 import ThirdOne from '../../Assets/Images/Sajek.png'
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   return (
     <div className="flex container mx-auto items-center gap-5 mt-16">
+      <Helmet>
+        <title>Home - Travel Guru</title>
+      </Helmet>
       <div className="w-1/3 text-white ">
         <h1 className="text-5xl font-semibold mb-8 uppercase">Cox's Bazar</h1>
         <p className="text-lg text-slate-300">

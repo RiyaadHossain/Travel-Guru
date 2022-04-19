@@ -3,7 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import Facebook from "../../../Assets/Icons/fb.png";
 import Google from "../../../Assets/Icons/google.png";
 import auth from "../../../Firebase/Firebase.init";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import "./SignUp.css";
 import toast from "react-hot-toast";
 
@@ -16,6 +19,7 @@ const SignUp = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
+  const [updateProfile, updating] = useUpdateProfile(auth);
   let spinner;
 
   useEffect(() => {
@@ -28,7 +32,9 @@ const SignUp = () => {
   // Function: Submit Form
   const onSubmitForm = async (e) => {
     e.preventDefault();
-    await createUserWithEmailAndPassword(email, password);
+    createUserWithEmailAndPassword(email, password);
+    await updateProfile({ name });
+    console.log(user);
   };
   return (
     <div>
@@ -42,7 +48,7 @@ const SignUp = () => {
             </h3>
             <form onSubmit={onSubmitForm}>
               <input
-                onBlur={(e) => setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
                 className="block outline-none w-full bg-transparent border-b mb-4 py-3 pl-4 text-lg"
                 type="text"
                 name="name"
